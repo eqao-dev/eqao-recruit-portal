@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EQAO 採用情報ポータル | 入社前の方へ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: #f5f3f7;
+      min-height: 100vh;
+      color: #1e1e2e;
+    }
+
+    /* ヘッダー */
+    .header {
+      background: linear-gradient(135deg, #2d2248 0%, #3d3058 100%);
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(45, 34, 72, 0.2);
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo {
+      width: 38px;
+      height: 38px;
+      background: #fff;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px;
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .brand-area {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name {
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .brand-sub {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.7);
+      letter-spacing: 0.5px;
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      font-size: 14px;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+
+    .nav-item:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .nav-item.primary {
+      background: #fff;
+      color: #2d2248;
+      font-weight: 600;
+    }
+
+    .nav-item.primary:hover {
+      background: #f5f3f7;
+    }
+
+    /* メイン */
+    .main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+
+    /* ページヘッダー */
+    .page-header {
+      margin-bottom: 32px;
+    }
+
+    .page-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #2d2248;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 6px;
+      margin-bottom: 12px;
+    }
+
+    .page-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: #2d2248;
+      margin-bottom: 8px;
+    }
+
+    .page-subtitle {
+      font-size: 15px;
+      color: #6b6b7b;
+      line-height: 1.7;
+    }
+
+    /* お知らせ掲示板 */
+    .notice-board {
+      background: #fff;
+      border: 1px solid #e8e4ed;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 32px;
+    }
+
+    .notice-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #f3f0f7;
+    }
+
+    .notice-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+      font-weight: 700;
+      color: #2d2248;
+    }
+
+    .notice-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .notice-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      background: #faf9fc;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+
+    .notice-item:hover {
+      background: #f3f0f7;
+    }
+
+    .notice-item.new {
+      background: #f3eef8;
+      border-left: 3px solid #2d2248;
+    }
+
+    .notice-badge {
+      flex-shrink: 0;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      background: #2d2248;
+      color: #fff;
+    }
+
+    .notice-badge.info {
+      background: #6b6b7b;
+    }
+
+    .notice-text {
+      flex: 1;
+      font-size: 13px;
+      color: #3d3d4d;
+    }
+
+    .notice-date {
+      flex-shrink: 0;
+      font-size: 12px;
+      color: #9b9bab;
+    }
+
+    /* メッセージボックス */
+    .message-box {
+      background: linear-gradient(135deg, #2d2248 0%, #3d3058 100%);
+      border-radius: 12px;
+      padding: 32px;
+      margin-bottom: 40px;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .message-box::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 200px;
+      height: 200px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 50%;
+    }
+
+    .message-box h2 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      position: relative;
+    }
+
+    .message-box p {
+      font-size: 14px;
+      line-height: 1.9;
+      opacity: 0.9;
+      position: relative;
+    }
+
+    /* セクション */
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .section-icon {
+      width: 36px;
+      height: 36px;
+      background: #2d2248;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #2d2248;
+    }
+
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: #e8e4ed;
+    }
+
+    /* カテゴリグリッド */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    /* パターンC: フラット型カード */
+    .category-card {
+      background: #fff;
+      border: 1px solid transparent;
+      border-radius: 12px;
+      padding: 24px;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      position: relative;
+    }
+
+    .category-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 12px;
+      border: 2px solid transparent;
+      transition: all 0.25s ease;
+    }
+
+    .category-card:hover {
+      background: #faf8fc;
+      box-shadow: 0 4px 20px rgba(45, 34, 72, 0.08);
+    }
+
+    .category-card:hover::after {
+      border-color: #2d2248;
+    }
+
+    .card-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .card-icon-circle {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      background: #f5f3f7;
+      color: #6b6b7b;
+      transition: all 0.25s ease;
+    }
+
+    .category-card:hover .card-icon-circle {
+      background: #2d2248;
+      color: #fff;
+    }
+
+    .card-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #2d2248;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-arrow {
+      color: #ccc8d3;
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: all 0.25s ease;
+    }
+
+    .category-card:hover .card-arrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .card-desc {
+      font-size: 13px;
+      color: #6b6b7b;
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .card-tag {
+      font-size: 10px;
+      padding: 3px 8px;
+      background: #f0edf4;
+      color: #6b6b7b;
+      border-radius: 4px;
+      transition: all 0.25s ease;
+    }
+
+    .category-card:hover .card-tag {
+      background: #e8e4ed;
+    }
+
+    /* 採用フローセクション */
+    .flow-section {
+      background: #fff;
+      border: 1px solid #e8e4ed;
+      border-radius: 12px;
+      padding: 32px;
+      margin-bottom: 32px;
+    }
+
+    .flow-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .flow-icon {
+      width: 36px;
+      height: 36px;
+      background: #2d2248;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    }
+
+    .flow-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #2d2248;
+    }
+
+    .flow-steps {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .flow-steps::before {
+      content: '';
+      position: absolute;
+      top: 24px;
+      left: 60px;
+      right: 60px;
+      height: 2px;
+      background: #e8e4ed;
+    }
+
+    .flow-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      flex: 1;
+      position: relative;
+      z-index: 1;
+    }
+
+    .flow-number {
+      width: 48px;
+      height: 48px;
+      background: #2d2248;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 8px rgba(45, 34, 72, 0.25);
+    }
+
+    .flow-step-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #2d2248;
+      margin-bottom: 4px;
+    }
+
+    .flow-step-desc {
+      font-size: 12px;
+      color: #6b6b7b;
+    }
+
+    /* CTAセクション */
+    .cta-section {
+      background: linear-gradient(135deg, #2d2248 0%, #3d3058 100%);
+      border-radius: 12px;
+      padding: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+
+    .cta-content h2 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .cta-content p {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+      color: #2d2248;
+      padding: 16px 32px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .cta-btn:hover {
+      background: #f5f3f7;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    /* フッター */
+    .footer {
+      text-align: center;
+      padding: 32px 24px;
+      color: #9b9bab;
+      font-size: 13px;
+    }
+
+    /* レスポンシブ */
+    @media (max-width: 900px) {
+      .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .flow-steps {
+        flex-wrap: wrap;
+        gap: 24px;
+      }
+
+      .flow-steps::before {
+        display: none;
+      }
+
+      .flow-step {
+        flex: 0 0 calc(50% - 12px);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .category-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-section {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .flow-step {
+        flex: 0 0 100%;
+      }
+
+      .header-nav {
+        display: none;
+      }
+
+      .page-title {
+        font-size: 22px;
+      }
+    }
+
+    /* 動画セクション */
+    .video-section {
+      background: #fff;
+      border: 1px solid #e8e4ed;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 32px;
+    }
+
+    .video-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+      font-weight: 700;
+      color: #2d2248;
+      margin-bottom: 16px;
+    }
+
+    .video-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      /* 16:9 */
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* 準備中カード */
+    .category-card.coming-soon {
+      pointer-events: none;
+      opacity: 0.5;
+      position: relative;
+    }
+
+    .category-card.coming-soon::before {
+      content: '準備中';
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: #6b6b7b;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 4px;
+      z-index: 10;
+    }
+
+    .category-card.coming-soon:hover {
+      background: #fff;
+      box-shadow: none;
+    }
+
+    .category-card.coming-soon:hover::after {
+      border-color: transparent;
+    }
+
+    .category-card.coming-soon:hover .card-icon-circle {
+      background: #f5f3f7;
+      color: #6b6b7b;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="header-content">
+      <div class="logo-area">
+        <div class="logo">
+          <img src="logo.png" alt="EQAO">
+        </div>
+        <div class="brand-area">
+          <span class="brand-name">EQAO 採用情報ポータル</span>
+          <span class="brand-sub">FOR APPLICANTS</span>
+        </div>
+      </div>
+      <nav class="header-nav">
+        <a href="#about" class="nav-item">会社について</a>
+        <a href="#work" class="nav-item">働く環境</a>
+        <a href="#flow" class="nav-item">採用の流れ</a>
+        <a href="apply.html" class="nav-item primary">
+          <i data-lucide="send" style="width:16px;height:16px;"></i>
+          面談に申し込む
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- メイン -->
+  <main class="main">
+    <!-- ページヘッダー -->
+    <div class="page-header">
+      <div class="page-badge">
+        <i data-lucide="user-plus" style="width:14px;height:14px;"></i>
+        入社前の方向け
+      </div>
+      <h1 class="page-title">採用情報ポータル</h1>
+      <p class="page-subtitle">
+        EQAOで働くことについての情報を包括的にまとめています。<br>
+        採用面談の前に、各コンテンツをご確認ください。
+      </p>
+    </div>
+
+    <!-- お知らせ -->
+    <section class="notice-board">
+      <div class="notice-header">
+        <div class="notice-title">
+          <i data-lucide="bell" style="width:18px;height:18px;"></i>
+          お知らせ
+        </div>
+      </div>
+      <div class="notice-list" id="notice-list">
+        <div class="notice-item new">
+          <span class="notice-badge">NEW</span>
+          <span class="notice-text">2026年度スタッフ募集を開始しました</span>
+          <span class="notice-date">2026/01/09</span>
+        </div>
+        <div class="notice-item">
+          <span class="notice-badge info">INFO</span>
+          <span class="notice-text">採用情報ポータルを公開しました</span>
+          <span class="notice-date">2026/01/09</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 会社紹介動画 -->
+    <section class="video-section">
+      <div class="video-header">
+        <i data-lucide="play-circle" style="width:20px;height:20px;color:#6b5b95;"></i>
+        <span>会社紹介動画</span>
+      </div>
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/Mq5gDtpVKsQ" title="EQAO 会社紹介動画" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </section>
+
+    <!-- メッセージボックス -->
+    <div class="message-box">
+      <h2>採用候補者の皆様へ</h2>
+      <p>
+        EQAOでは、入社前に会社の全体像を正しく理解していただくことを大切にしています。
+        このポータルには、事業内容・働く環境・評価制度・研修制度など、入社前に知っておいていただきたい情報をすべてまとめています。
+        ミスマッチのない、納得感を持った入社をしていただくために、ぜひ各コンテンツをご確認ください。
+      </p>
+    </div>
+
+    <!-- 会社を知る -->
+    <section class="section" id="about">
+      <div class="section-header">
+        <div class="section-icon">
+          <i data-lucide="building-2" style="width:18px;height:18px;"></i>
+        </div>
+        <div class="section-title">会社を知る</div>
+        <div class="section-line"></div>
+      </div>
+      <div class="category-grid" style="grid-template-columns: repeat(2, 1fr);">
+        <a href="message.html" class="category-card">
+          <div class="card-row">
+            <div class="card-icon-circle">
+              <i data-lucide="message-square" style="width:22px;height:22px;"></i>
+            </div>
+            <div class="card-content">
+              <div class="card-title">
+                代表メッセージ・理念・会社概要
+                <span class="card-arrow">
+                  <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
+                </span>
+              </div>
+              <div class="card-desc">代表からのメッセージ、EQAOの理念・教育目標・設立背景</div>
+              <div class="card-tags">
+                <span class="card-tag">代表挨拶</span>
+                <span class="card-tag">理念</span>
+                <span class="card-tag">会社概要</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <div class="category-card coming-soon">
+          <div class="card-row">
+            <div class="card-icon-circle">
+              <i data-lucide="history" style="width:22px;height:22px;"></i>
+            </div>
+            <div class="card-content">
+              <div class="card-title">
+                沿革・ビジョン
+              </div>
+              <div class="card-desc">会社の歩みと今後の目標・中長期的な指針</div>
+              <div class="card-tags">
+                <span class="card-tag">沿革</span>
+                <span class="card-tag">ビジョン</span>
+                <span class="card-tag">目標</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 働く環境を知る -->
+    <section class="section" id="work">
+      <div class="section-header">
+        <div class="section-icon">
+          <i data-lucide="users" style="width:18px;height:18px;"></i>
+        </div>
+        <div class="section-title">働く環境を知る</div>
+        <div class="section-line"></div>
+      </div>
+      <div class="category-grid">
+        <a href="requirements.html" class="category-card">
+          <div class="card-row">
+            <div class="card-icon-circle">
+              <i data-lucide="user-check" style="width:22px;height:22px;"></i>
+            </div>
+            <div class="card-content">
+              <div class="card-title">
+                求める人物像・応募条件
+                <span class="card-arrow">
+                  <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
+                </span>
+              </div>
+              <div class="card-desc">EQAOが求める人材・応募に必要な条件</div>
+              <div class="card-tags">
+                <span class="card-tag">人物像</span>
+                <span class="card-tag">応募条件</span>
+                <span class="card-tag">適性</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <a href="evaluation.html" class="category-card">
+          <div class="card-row">
+            <div class="card-icon-circle">
+              <i data-lucide="wallet" style="width:22px;height:22px;"></i>
+            </div>
+            <div class="card-content">
+              <div class="card-title">
+                給与・勤務条件
+                <span class="card-arrow">
+                  <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
+                </span>
+              </div>
+              <div class="card-desc">給与体系・昇給制度・業務内容・福利厚生について</div>
+              <div class="card-tags">
+                <span class="card-tag">給与</span>
+                <span class="card-tag">昇給</span>
+                <span class="card-tag">福利厚生</span>
+                <span class="card-tag">勤務地</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <div class="category-card coming-soon">
+          <div class="card-row">
+            <div class="card-icon-circle">
+              <i data-lucide="graduation-cap" style="width:22px;height:22px;"></i>
+            </div>
+            <div class="card-content">
+              <div class="card-title">
+                研修制度・サポート体制
+              </div>
+              <div class="card-desc">入社後の研修フロー・メンター制度・フォロー体制</div>
+              <div class="card-tags">
+                <span class="card-tag">研修</span>
+                <span class="card-tag">メンター</span>
+                <span class="card-tag">サポート</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="category-card coming-soon">
+          <div class="card-row">
+            <div class="card-icon-circle">
+              <i data-lucide="users" style="width:22px;height:22px;"></i>
+            </div>
+            <div class="card-content">
+              <div class="card-title">
+                スタッフ紹介
+              </div>
+              <div class="card-desc">EQAOで働く先輩スタッフの紹介</div>
+              <div class="card-tags">
+                <span class="card-tag">スタッフ</span>
+                <span class="card-tag">先輩の声</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="category-card coming-soon">
+          <div class="card-row">
+            <div class="card-icon-circle">
+              <i data-lucide="calendar-days" style="width:22px;height:22px;"></i>
+            </div>
+            <div class="card-content">
+              <div class="card-title">
+                イベント・社内取り組み
+              </div>
+              <div class="card-desc">社内イベントやチーム活動について</div>
+              <div class="card-tags">
+                <span class="card-tag">イベント</span>
+                <span class="card-tag">交流</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="category-card coming-soon">
+          <div class="card-row">
+            <div class="card-icon-circle">
+              <i data-lucide="sparkles" style="width:22px;height:22px;"></i>
+            </div>
+            <div class="card-content">
+              <div class="card-title">
+                EQAOの特徴・他社との違い
+              </div>
+              <div class="card-desc">EQAOならではの強み・特徴</div>
+              <div class="card-tags">
+                <span class="card-tag">特徴</span>
+                <span class="card-tag">強み</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 採用フロー -->
+    <section class="flow-section" id="flow">
+      <div class="flow-header">
+        <div class="flow-icon">
+          <i data-lucide="route" style="width:18px;height:18px;"></i>
+        </div>
+        <div class="flow-title">採用までの流れ</div>
+      </div>
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="flow-number">1</div>
+          <div class="flow-step-title">ポータル閲覧</div>
+          <div class="flow-step-desc">本ページで情報確認</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-number">2</div>
+          <div class="flow-step-title">面談申し込み</div>
+          <div class="flow-step-desc">フォームから申込</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-number">3</div>
+          <div class="flow-step-title">書類提出</div>
+          <div class="flow-step-desc">履歴書・経歴書</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-number">4</div>
+          <div class="flow-step-title">採用面談</div>
+          <div class="flow-step-desc">オンライン / 対面</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-number">5</div>
+          <div class="flow-step-title">合否連絡</div>
+          <div class="flow-step-desc">研修フェーズへ</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+      <div class="cta-content">
+        <h2>採用面談のお申し込み</h2>
+        <p>ポータルの内容をご確認いただけましたら、面談へお申し込みください</p>
+      </div>
+      <a href="apply.html" class="cta-btn">
+        <i data-lucide="send" style="width:18px;height:18px;"></i>
+        面談に申し込む
+      </a>
+    </section>
+  </main>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <p>© 2026 EQAO Education Group. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+    });
+  </script>
+</body>
+
+</html>

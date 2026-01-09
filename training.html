@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>研修制度・サポート体制 | EQAO 採用情報ポータル</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Noto Sans JP', sans-serif; background: #f5f3f7; min-height: 100vh; color: #1e1e2e; }
+    .header { background: linear-gradient(135deg, #2d2248 0%, #3d3058 100%); padding: 0 24px; height: 64px; display: flex; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(45, 34, 72, 0.2); }
+    .header-content { max-width: 1200px; margin: 0 auto; width: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .logo-area { display: flex; align-items: center; gap: 14px; }
+    .logo { width: 38px; height: 38px; background: #fff; border-radius: 10px; display: flex; align-items: center; justify-content: center; padding: 6px; }
+    .logo img { width: 100%; height: 100%; object-fit: contain; }
+    .brand-area { display: flex; flex-direction: column; }
+    .brand-name { font-size: 17px; font-weight: 700; color: #fff; }
+    .brand-sub { font-size: 11px; color: rgba(255, 255, 255, 0.7); letter-spacing: 0.5px; }
+    .header-nav { display: flex; align-items: center; gap: 6px; }
+    .nav-item { display: flex; align-items: center; gap: 6px; padding: 8px 16px; color: rgba(255, 255, 255, 0.8); text-decoration: none; font-size: 14px; border-radius: 8px; transition: all 0.2s; }
+    .nav-item:hover { color: #fff; background: rgba(255, 255, 255, 0.15); }
+    .nav-item.primary { background: #fff; color: #2d2248; font-weight: 600; }
+    .nav-item.primary:hover { background: #f5f3f7; }
+    .main { max-width: 800px; margin: 0 auto; padding: 40px 24px; }
+    .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #6b6b7b; margin-bottom: 24px; }
+    .breadcrumb a { color: #6b6b7b; text-decoration: none; transition: color 0.2s; }
+    .breadcrumb a:hover { color: #2d2248; }
+    .breadcrumb span { color: #9b9bab; }
+    .page-header { margin-bottom: 40px; }
+    .page-icon { width: 56px; height: 56px; background: #2d2248; border-radius: 14px; display: flex; align-items: center; justify-content: center; color: #fff; margin-bottom: 16px; }
+    .page-title { font-size: 26px; font-weight: 700; color: #2d2248; margin-bottom: 8px; }
+    .page-subtitle { font-size: 15px; color: #6b6b7b; line-height: 1.7; }
+    .content-section { background: #fff; border: 1px solid #e8e4ed; border-radius: 12px; padding: 32px; margin-bottom: 24px; }
+    .section-title { font-size: 18px; font-weight: 700; color: #2d2248; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid #f3f0f7; display: flex; align-items: center; gap: 10px; }
+    .section-title i { color: #6b5b95; }
+    .section-content { font-size: 15px; color: #3d3d4d; line-height: 1.9; }
+    .section-content p { margin-bottom: 16px; }
+    .section-content p:last-child { margin-bottom: 0; }
+
+    /* 研修フロー */
+    .training-flow { display: flex; flex-direction: column; gap: 16px; }
+    .training-step { display: flex; gap: 20px; align-items: flex-start; }
+    .step-marker { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+    .step-number { width: 40px; height: 40px; background: #2d2248; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; }
+    .step-line { width: 2px; flex: 1; background: #e8e4ed; min-height: 40px; }
+    .training-step:last-child .step-line { display: none; }
+    .step-content { flex: 1; background: #faf9fc; border-radius: 10px; padding: 20px; }
+    .step-title { font-size: 15px; font-weight: 700; color: #2d2248; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+    .step-period { font-size: 12px; color: #6b5b95; background: #f3eef8; padding: 2px 8px; border-radius: 4px; }
+    .step-desc { font-size: 13px; color: #6b6b7b; line-height: 1.6; }
+
+    /* サポート体制 */
+    .support-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .support-card { background: #faf9fc; border-radius: 10px; padding: 24px; }
+    .support-icon { width: 48px; height: 48px; background: #2d2248; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #fff; margin-bottom: 14px; }
+    .support-title { font-size: 15px; font-weight: 700; color: #2d2248; margin-bottom: 8px; }
+    .support-desc { font-size: 13px; color: #6b6b7b; line-height: 1.6; }
+
+    /* 特徴ボックス */
+    .feature-box { background: linear-gradient(135deg, #2d2248 0%, #3d3058 100%); border-radius: 12px; padding: 28px 32px; color: #fff; margin-bottom: 24px; }
+    .feature-title { font-size: 16px; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+    .feature-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .feature-item { display: flex; align-items: center; gap: 10px; font-size: 14px; opacity: 0.95; }
+
+    .note-box { background: #f3eef8; border-radius: 10px; padding: 20px 24px; display: flex; gap: 14px; align-items: flex-start; margin-top: 20px; }
+    .note-icon { color: #6b5b95; flex-shrink: 0; }
+    .note-content { font-size: 14px; color: #3d3d4d; line-height: 1.7; }
+
+    .nav-buttons { display: flex; justify-content: space-between; gap: 16px; margin-top: 40px; }
+    .nav-btn { display: flex; align-items: center; gap: 8px; padding: 14px 20px; background: #fff; border: 1px solid #e8e4ed; border-radius: 10px; color: #2d2248; text-decoration: none; font-size: 14px; font-weight: 600; transition: all 0.2s; }
+    .nav-btn:hover { border-color: #2d2248; background: #faf9fc; }
+    .nav-btn.back { color: #6b6b7b; }
+    .nav-btn.primary { background: #2d2248; color: #fff; border-color: #2d2248; }
+    .nav-btn.primary:hover { background: #3d3058; }
+    .footer { text-align: center; padding: 32px 24px; color: #9b9bab; font-size: 13px; }
+
+    @media (max-width: 600px) {
+      .header-nav { display: none; }
+      .page-title { font-size: 22px; }
+      .content-section { padding: 24px; }
+      .support-grid { grid-template-columns: 1fr; }
+      .feature-list { grid-template-columns: 1fr; }
+      .nav-buttons { flex-direction: column; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <div class="header-content">
+      <a href="index.html" class="logo-area" style="text-decoration: none;">
+        <div class="logo"><img src="logo.png" alt="EQAO"></div>
+        <div class="brand-area">
+          <span class="brand-name">EQAO 採用情報ポータル</span>
+          <span class="brand-sub">FOR APPLICANTS</span>
+        </div>
+      </a>
+      <nav class="header-nav">
+        <a href="index.html" class="nav-item">トップ</a>
+        <a href="apply.html" class="nav-item primary">
+          <i data-lucide="send" style="width:16px;height:16px;"></i>
+          面談に申し込む
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <nav class="breadcrumb">
+      <a href="index.html">トップ</a>
+      <span>/</span>
+      <span>研修制度・サポート体制</span>
+    </nav>
+
+    <div class="page-header">
+      <div class="page-icon">
+        <i data-lucide="graduation-cap" style="width:28px;height:28px;"></i>
+      </div>
+      <h1 class="page-title">研修制度・サポート体制</h1>
+      <p class="page-subtitle">未経験でも安心してスタートできる、研修とサポートの仕組みをご紹介します。</p>
+    </div>
+
+    <!-- 特徴ボックス -->
+    <div class="feature-box">
+      <div class="feature-title">
+        <i data-lucide="shield-check" style="width:20px;height:20px;"></i>
+        EQAOの研修の特徴
+      </div>
+      <div class="feature-list">
+        <div class="feature-item">
+          <i data-lucide="check" style="width:16px;height:16px;"></i>
+          研修期間中も給与支給
+        </div>
+        <div class="feature-item">
+          <i data-lucide="check" style="width:16px;height:16px;"></i>
+          動画教材でいつでも復習可能
+        </div>
+        <div class="feature-item">
+          <i data-lucide="check" style="width:16px;height:16px;"></i>
+          先輩メンターが個別サポート
+        </div>
+        <div class="feature-item">
+          <i data-lucide="check" style="width:16px;height:16px;"></i>
+          段階的なステップアップ
+        </div>
+      </div>
+    </div>
+
+    <!-- 研修フロー -->
+    <section class="content-section">
+      <h2 class="section-title">
+        <i data-lucide="route" style="width:20px;height:20px;"></i>
+        研修フロー
+      </h2>
+      <div class="section-content">
+        <p>入社から独り立ちまで、段階的に学んでいただきます。</p>
+      </div>
+      <div class="training-flow">
+        <div class="training-step">
+          <div class="step-marker">
+            <div class="step-number">1</div>
+            <div class="step-line"></div>
+          </div>
+          <div class="step-content">
+            <div class="step-title">
+              オリエンテーション
+              <span class="step-period">1日目</span>
+            </div>
+            <div class="step-desc">会社・教室の説明、システムの使い方、基本ルールの説明を行います。</div>
+          </div>
+        </div>
+        <div class="training-step">
+          <div class="step-marker">
+            <div class="step-number">2</div>
+            <div class="step-line"></div>
+          </div>
+          <div class="step-content">
+            <div class="step-title">
+              基礎研修
+              <span class="step-period">約1週間</span>
+            </div>
+            <div class="step-desc">動画教材で授業の進め方、生徒対応の基本を学習。確認テストで理解度をチェックします。</div>
+          </div>
+        </div>
+        <div class="training-step">
+          <div class="step-marker">
+            <div class="step-number">3</div>
+            <div class="step-line"></div>
+          </div>
+          <div class="step-content">
+            <div class="step-title">
+              実践研修
+              <span class="step-period">約2〜3週間</span>
+            </div>
+            <div class="step-desc">先輩講師の授業を見学後、メンター同席のもと実際に授業を担当。フィードバックを受けながらスキルを磨きます。</div>
+          </div>
+        </div>
+        <div class="training-step">
+          <div class="step-marker">
+            <div class="step-number">4</div>
+            <div class="step-line"></div>
+          </div>
+          <div class="step-content">
+            <div class="step-title">
+              デビュー
+              <span class="step-period">約1ヶ月後</span>
+            </div>
+            <div class="step-desc">独り立ちして授業を担当。引き続きメンターのサポートを受けながら、G2への昇格を目指します。</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- サポート体制 -->
+    <section class="content-section">
+      <h2 class="section-title">
+        <i data-lucide="life-buoy" style="width:20px;height:20px;"></i>
+        サポート体制
+      </h2>
+      <div class="support-grid">
+        <div class="support-card">
+          <div class="support-icon">
+            <i data-lucide="user-check" style="width:24px;height:24px;"></i>
+          </div>
+          <div class="support-title">メンター制度</div>
+          <div class="support-desc">先輩講師が専属のメンターとして、授業の相談や悩みに対応します。</div>
+        </div>
+        <div class="support-card">
+          <div class="support-icon">
+            <i data-lucide="video" style="width:24px;height:24px;"></i>
+          </div>
+          <div class="support-title">動画教材</div>
+          <div class="support-desc">指導テクニックや教科の解説動画をいつでも視聴可能です。</div>
+        </div>
+        <div class="support-card">
+          <div class="support-icon">
+            <i data-lucide="message-square" style="width:24px;height:24px;"></i>
+          </div>
+          <div class="support-title">チャットサポート</div>
+          <div class="support-desc">困ったときはすぐに相談できるチャットグループがあります。</div>
+        </div>
+        <div class="support-card">
+          <div class="support-icon">
+            <i data-lucide="calendar" style="width:24px;height:24px;"></i>
+          </div>
+          <div class="support-title">定期面談</div>
+          <div class="support-desc">月1回の面談で、課題や目標を一緒に整理します。</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 研修中の待遇 -->
+    <section class="content-section">
+      <h2 class="section-title">
+        <i data-lucide="wallet" style="width:20px;height:20px;"></i>
+        研修中の待遇
+      </h2>
+      <div class="section-content">
+        <p>
+          <strong>研修期間中も給与をお支払いします。</strong><br>
+          「学びながら働く」ではなく、「働きながら学ぶ」スタイルです。
+          研修だからといって無給ということはありません。
+        </p>
+        <p>
+          研修期間の目安は約1ヶ月ですが、進捗に応じて柔軟に調整します。
+          焦らず、しっかりと基礎を身につけてからデビューできます。
+        </p>
+      </div>
+
+      <div class="note-box">
+        <div class="note-icon">
+          <i data-lucide="heart" style="width:20px;height:20px;"></i>
+        </div>
+        <div class="note-content">
+          <strong>未経験でも大丈夫！</strong><br>
+          現在活躍している講師の多くも、入社時は未経験でした。
+          大切なのは「生徒の成長に真剣に向き合いたい」という気持ちです。
+        </div>
+      </div>
+    </section>
+
+    <div class="nav-buttons">
+      <a href="evaluation.html" class="nav-btn back">
+        <i data-lucide="arrow-left" style="width:18px;height:18px;"></i>
+        前へ：評価制度・給与
+      </a>
+      <a href="apply.html" class="nav-btn primary">
+        <i data-lucide="send" style="width:18px;height:18px;"></i>
+        面談に申し込む
+      </a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 EQAO Education Group. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+    });
+  </script>
+</body>
+
+</html>

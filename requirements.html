@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>求める人物像・応募条件 | EQAO 採用情報ポータル</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: #f5f3f7;
+      min-height: 100vh;
+      color: #1e1e2e;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #2d2248 0%, #3d3058 100%);
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(45, 34, 72, 0.2);
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo {
+      width: 38px;
+      height: 38px;
+      background: #fff;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px;
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .brand-area {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name {
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .brand-sub {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.7);
+      letter-spacing: 0.5px;
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      font-size: 14px;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+
+    .nav-item:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .nav-item.primary {
+      background: #fff;
+      color: #2d2248;
+      font-weight: 600;
+    }
+
+    .nav-item.primary:hover {
+      background: #f5f3f7;
+    }
+
+    .main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: #6b6b7b;
+      margin-bottom: 24px;
+    }
+
+    .breadcrumb a {
+      color: #6b6b7b;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .breadcrumb a:hover {
+      color: #2d2248;
+    }
+
+    .breadcrumb span {
+      color: #9b9bab;
+    }
+
+    .page-header {
+      margin-bottom: 40px;
+    }
+
+    .page-icon {
+      width: 56px;
+      height: 56px;
+      background: #2d2248;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    .page-title {
+      font-size: 26px;
+      font-weight: 700;
+      color: #2d2248;
+      margin-bottom: 8px;
+    }
+
+    .page-subtitle {
+      font-size: 15px;
+      color: #6b6b7b;
+      line-height: 1.7;
+    }
+
+    .content-section {
+      background: #fff;
+      border: 1px solid #e8e4ed;
+      border-radius: 12px;
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #2d2248;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #f3f0f7;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title i {
+      color: #6b5b95;
+    }
+
+    .section-content {
+      font-size: 15px;
+      color: #3d3d4d;
+      line-height: 1.9;
+    }
+
+    /* 人物像カード */
+    .persona-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .persona-card {
+      background: #faf9fc;
+      border-radius: 10px;
+      padding: 24px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .persona-icon {
+      width: 44px;
+      height: 44px;
+      background: #2d2248;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .persona-content {
+      flex: 1;
+    }
+
+    .persona-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #2d2248;
+      margin-bottom: 6px;
+    }
+
+    .persona-desc {
+      font-size: 13px;
+      color: #6b6b7b;
+      line-height: 1.6;
+    }
+
+    /* チェックリスト */
+    .checklist {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 16px;
+      background: #faf9fc;
+      border-radius: 8px;
+    }
+
+    .checklist-icon {
+      width: 24px;
+      height: 24px;
+      background: #2d2248;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .checklist-text {
+      font-size: 14px;
+      color: #3d3d4d;
+      line-height: 1.6;
+    }
+
+    /* 注意ボックス */
+    .note-box {
+      background: #f3eef8;
+      border-radius: 10px;
+      padding: 20px 24px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin-top: 20px;
+    }
+
+    .note-icon {
+      color: #6b5b95;
+      flex-shrink: 0;
+    }
+
+    .note-content {
+      font-size: 14px;
+      color: #3d3d4d;
+      line-height: 1.7;
+    }
+
+    .note-content strong {
+      color: #2d2248;
+    }
+
+    /* 歓迎ボックス */
+    .welcome-box {
+      background: linear-gradient(135deg, #2d2248 0%, #3d3058 100%);
+      border-radius: 12px;
+      padding: 28px 32px;
+      color: #fff;
+      margin-bottom: 24px;
+    }
+
+    .welcome-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .welcome-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .welcome-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      opacity: 0.95;
+    }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 40px;
+    }
+
+    .nav-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 20px;
+      background: #fff;
+      border: 1px solid #e8e4ed;
+      border-radius: 10px;
+      color: #2d2248;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover {
+      border-color: #2d2248;
+      background: #faf9fc;
+    }
+
+    .nav-btn.back {
+      color: #6b6b7b;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 32px 24px;
+      color: #9b9bab;
+      font-size: 13px;
+    }
+
+    @media (max-width: 600px) {
+      .header-nav {
+        display: none;
+      }
+
+      .page-title {
+        font-size: 22px;
+      }
+
+      .content-section {
+        padding: 24px;
+      }
+
+      .persona-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-buttons {
+        flex-direction: column;
+      }
+    }
+
+    /* 正直にお伝えするリスト */
+    .honest-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .honest-item {
+      background: #faf9fc;
+      border-radius: 8px;
+      padding: 20px;
+      border-left: 3px solid #e11d48;
+    }
+
+    .honest-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+      font-weight: 700;
+      color: #2d2248;
+      margin-bottom: 8px;
+    }
+
+    .honest-title i {
+      color: #e11d48;
+    }
+
+    .honest-desc {
+      font-size: 13px;
+      color: #6b6b7b;
+      line-height: 1.7;
+      padding-left: 24px;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <div class="header-content">
+      <a href="index.html" class="logo-area" style="text-decoration: none;">
+        <div class="logo">
+          <img src="logo.png" alt="EQAO">
+        </div>
+        <div class="brand-area">
+          <span class="brand-name">EQAO 採用情報ポータル</span>
+          <span class="brand-sub">FOR APPLICANTS</span>
+        </div>
+      </a>
+      <nav class="header-nav">
+        <a href="index.html" class="nav-item">トップ</a>
+        <a href="apply.html" class="nav-item primary">
+          <i data-lucide="send" style="width:16px;height:16px;"></i>
+          面談に申し込む
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <nav class="breadcrumb">
+      <a href="index.html">トップ</a>
+      <span>/</span>
+      <span>求める人物像・応募条件</span>
+    </nav>
+
+    <div class="page-header">
+      <div class="page-icon">
+        <i data-lucide="user-check" style="width:28px;height:28px;"></i>
+      </div>
+      <h1 class="page-title">求める人物像・応募条件</h1>
+      <p class="page-subtitle">EQAOが求める人材像と、応募に必要な条件についてご説明します。</p>
+    </div>
+
+    <!-- 求める人物像 -->
+    <section class="content-section">
+      <h2 class="section-title">
+        <i data-lucide="heart" style="width:20px;height:20px;"></i>
+        求める人物像
+      </h2>
+      <div class="persona-grid">
+        <div class="persona-card">
+          <div class="persona-icon">
+            <i data-lucide="heart" style="width:22px;height:22px;"></i>
+          </div>
+          <div class="persona-content">
+            <div class="persona-title">教育への情熱がある</div>
+            <div class="persona-desc">生徒の成長に喜びを感じ、責任を持って向き合える方</div>
+          </div>
+        </div>
+        <div class="persona-card">
+          <div class="persona-icon">
+            <i data-lucide="rocket" style="width:22px;height:22px;"></i>
+          </div>
+          <div class="persona-content">
+            <div class="persona-title">主体的に動ける</div>
+            <div class="persona-desc">指示を待つのではなく、自ら考えて行動できる方</div>
+          </div>
+        </div>
+        <div class="persona-card">
+          <div class="persona-icon">
+            <i data-lucide="heart-handshake" style="width:22px;height:22px;"></i>
+          </div>
+          <div class="persona-content">
+            <div class="persona-title">他者のために貢献できる</div>
+            <div class="persona-desc">自分の利益だけでなく、生徒やチームのために動ける方</div>
+          </div>
+        </div>
+        <div class="persona-card">
+          <div class="persona-icon">
+            <i data-lucide="users" style="width:22px;height:22px;"></i>
+          </div>
+          <div class="persona-content">
+            <div class="persona-title">自立しつつ協調できる</div>
+            <div class="persona-desc">自分の意見を持ちながら、周囲と協力できる方</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 応募条件 -->
+    <section class="content-section">
+      <h2 class="section-title">
+        <i data-lucide="clipboard-check" style="width:20px;height:20px;"></i>
+        応募条件
+      </h2>
+      <div class="section-content" style="margin-bottom: 16px;">
+        <p>以下のいずれか1つ以上に該当する方が対象です。</p>
+      </div>
+      <div class="checklist">
+        <div class="checklist-item">
+          <div class="checklist-icon">
+            <i data-lucide="check" style="width:14px;height:14px;"></i>
+          </div>
+          <div class="checklist-text">
+            <strong>GMARCH／関関同立レベル</strong>の大学に合格した、通っている、通っていた方
+          </div>
+        </div>
+        <div class="checklist-item">
+          <div class="checklist-icon">
+            <i data-lucide="check" style="width:14px;height:14px;"></i>
+          </div>
+          <div class="checklist-text">
+            <strong>総合型選抜入試・学校推薦型選抜入試</strong>を経験したことがある
+          </div>
+        </div>
+        <div class="checklist-item">
+          <div class="checklist-icon">
+            <i data-lucide="check" style="width:14px;height:14px;"></i>
+          </div>
+          <div class="checklist-text">
+            <strong>英検準1級</strong>もしくはそれに相当する英語資格を持っている
+          </div>
+        </div>
+        <div class="checklist-item">
+          <div class="checklist-icon">
+            <i data-lucide="check" style="width:14px;height:14px;"></i>
+          </div>
+          <div class="checklist-text">
+            <strong>学習塾で勤務した経験</strong>がある
+          </div>
+        </div>
+      </div>
+
+      <div class="note-box">
+        <div class="note-icon">
+          <i data-lucide="info" style="width:20px;height:20px;"></i>
+        </div>
+        <div class="note-content">
+          <strong>上記のいずれかに該当すればOKです。</strong><br>
+          すべてを満たす必要はありません。「生徒の成長に真剣に向き合いたい」という気持ちがあれば、ぜひご応募ください。
+        </div>
+      </div>
+    </section>
+
+    <!-- こんな方には向いていないかも -->
+    <section class="content-section">
+      <h2 class="section-title">
+        <i data-lucide="alert-circle" style="width:20px;height:20px;"></i>
+        正直にお伝えすると...
+      </h2>
+      <div class="section-content">
+        <p style="margin-bottom: 20px;">
+          以下に当てはまる方は、EQAOの仕事には向いていないかもしれません。<br>
+          ミスマッチを防ぐために、正直にお伝えします。
+        </p>
+      </div>
+      <div class="honest-list">
+        <div class="honest-item">
+          <div class="honest-title">
+            <i data-lucide="x" style="width:16px;height:16px;"></i>
+            シフトの変更・キャンセルが多くなりそうな方
+          </div>
+          <div class="honest-desc">
+            生徒は「この先生の授業」を楽しみにしています。頻繁な変更は生徒の学習リズムを乱し、信頼関係を損ないます。
+          </div>
+        </div>
+        <div class="honest-item">
+          <div class="honest-title">
+            <i data-lucide="x" style="width:16px;height:16px;"></i>
+            「教えること」より「稼ぐこと」が目的の方
+          </div>
+          <div class="honest-desc">
+            時給だけを見れば、他にも選択肢はあるかもしれません。EQAOでは、生徒の成長にコミットする姿勢を大切にしています。
+          </div>
+        </div>
+        <div class="honest-item">
+          <div class="honest-title">
+            <i data-lucide="x" style="width:16px;height:16px;"></i>
+            指示待ちで自ら考えることが苦手な方
+          </div>
+          <div class="honest-desc">
+            生徒一人ひとりに最適な指導を行うには、自分で考え、工夫する姿勢が不可欠です。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="nav-buttons">
+      <a href="history.html" class="nav-btn back">
+        <i data-lucide="arrow-left" style="width:18px;height:18px;"></i>
+        前へ：沿革・ビジョン
+      </a>
+      <a href="evaluation.html" class="nav-btn">
+        次へ：評価制度・給与
+        <i data-lucide="arrow-right" style="width:18px;height:18px;"></i>
+      </a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 EQAO Education Group. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+    });
+  </script>
+</body>
+
+</html>

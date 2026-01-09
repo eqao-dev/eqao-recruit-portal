@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>給与・勤務条件 | EQAO 採用情報ポータル</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: #f5f3f7;
+      min-height: 100vh;
+      color: #1e1e2e;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #2d2248 0%, #3d3058 100%);
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(45, 34, 72, 0.2);
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo {
+      width: 38px;
+      height: 38px;
+      background: #fff;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px;
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .brand-area {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name {
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .brand-sub {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.7);
+      letter-spacing: 0.5px;
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      font-size: 14px;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+
+    .nav-item:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .nav-item.primary {
+      background: #fff;
+      color: #2d2248;
+      font-weight: 600;
+    }
+
+    .nav-item.primary:hover {
+      background: #f5f3f7;
+    }
+
+    .main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: #6b6b7b;
+      margin-bottom: 24px;
+    }
+
+    .breadcrumb a {
+      color: #6b6b7b;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .breadcrumb a:hover {
+      color: #2d2248;
+    }
+
+    .breadcrumb span {
+      color: #9b9bab;
+    }
+
+    .page-header {
+      margin-bottom: 40px;
+    }
+
+    .page-icon {
+      width: 56px;
+      height: 56px;
+      background: #2d2248;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    .page-title {
+      font-size: 26px;
+      font-weight: 700;
+      color: #2d2248;
+      margin-bottom: 8px;
+    }
+
+    .page-subtitle {
+      font-size: 15px;
+      color: #6b6b7b;
+      line-height: 1.7;
+    }
+
+    .content-section {
+      background: #fff;
+      border: 1px solid #e8e4ed;
+      border-radius: 12px;
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #2d2248;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #f3f0f7;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title i {
+      color: #6b5b95;
+    }
+
+    .section-content {
+      font-size: 15px;
+      color: #3d3d4d;
+      line-height: 1.9;
+    }
+
+    .section-content p {
+      margin-bottom: 16px;
+    }
+
+    .section-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 給与ハイライト */
+    .salary-highlight {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .salary-card {
+      flex: 1;
+      background: #faf9fc;
+      border-radius: 10px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .salary-card.primary {
+      background: linear-gradient(135deg, #2d2248 0%, #3d3058 100%);
+      color: #fff;
+    }
+
+    .salary-label {
+      font-size: 13px;
+      color: #6b6b7b;
+      margin-bottom: 8px;
+    }
+
+    .salary-card.primary .salary-label {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .salary-amount {
+      font-size: 28px;
+      font-weight: 700;
+      color: #2d2248;
+    }
+
+    .salary-card.primary .salary-amount {
+      color: #fff;
+    }
+
+    .salary-unit {
+      font-size: 14px;
+      font-weight: 400;
+    }
+
+    /* 昇給ステップ */
+    .raise-steps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .raise-step {
+      background: #f5f3f7;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+      color: #3d3d4d;
+    }
+
+    .raise-step.start {
+      background: #2d2248;
+      color: #fff;
+    }
+
+    .raise-arrow {
+      display: flex;
+      align-items: center;
+      color: #9b9bab;
+    }
+
+    /* 判断材料リスト */
+    .criteria-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .criteria-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      background: #faf9fc;
+      border-radius: 8px;
+      font-size: 14px;
+      color: #3d3d4d;
+    }
+
+    .criteria-number {
+      width: 24px;
+      height: 24px;
+      background: #2d2248;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* 業務内容リスト */
+    .task-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .task-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 16px;
+      background: #faf9fc;
+      border-radius: 8px;
+    }
+
+    .task-icon {
+      width: 32px;
+      height: 32px;
+      background: #2d2248;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .task-content {
+      flex: 1;
+    }
+
+    .task-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #2d2248;
+      margin-bottom: 4px;
+    }
+
+    .task-desc {
+      font-size: 13px;
+      color: #6b6b7b;
+    }
+
+    /* 勤務条件テーブル */
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .info-table tr {
+      border-bottom: 1px solid #f3f0f7;
+    }
+
+    .info-table tr:last-child {
+      border-bottom: none;
+    }
+
+    .info-table th {
+      width: 140px;
+      padding: 16px 0;
+      text-align: left;
+      font-size: 14px;
+      font-weight: 600;
+      color: #2d2248;
+      vertical-align: top;
+    }
+
+    .info-table td {
+      padding: 16px 0;
+      font-size: 14px;
+      color: #3d3d4d;
+      line-height: 1.7;
+    }
+
+    /* 福利厚生グリッド */
+    .benefit-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .benefit-item {
+      background: #faf9fc;
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .benefit-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: #2d2248;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .benefit-name i {
+      color: #6b5b95;
+    }
+
+    .benefit-desc {
+      font-size: 12px;
+      color: #6b6b7b;
+      line-height: 1.5;
+    }
+
+    /* アクセス情報 */
+    .access-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .access-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: #3d3d4d;
+    }
+
+    .access-item i {
+      color: #6b5b95;
+    }
+
+    /* 注意ボックス */
+    .note-box {
+      background: #f3eef8;
+      border-radius: 10px;
+      padding: 20px 24px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin-top: 20px;
+    }
+
+    .note-icon {
+      color: #6b5b95;
+      flex-shrink: 0;
+    }
+
+    .note-content {
+      font-size: 14px;
+      color: #3d3d4d;
+      line-height: 1.7;
+    }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 40px;
+    }
+
+    .nav-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 20px;
+      background: #fff;
+      border: 1px solid #e8e4ed;
+      border-radius: 10px;
+      color: #2d2248;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover {
+      border-color: #2d2248;
+      background: #faf9fc;
+    }
+
+    .nav-btn.back {
+      color: #6b6b7b;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 32px 24px;
+      color: #9b9bab;
+      font-size: 13px;
+    }
+
+    @media (max-width: 600px) {
+      .header-nav {
+        display: none;
+      }
+
+      .page-title {
+        font-size: 22px;
+      }
+
+      .content-section {
+        padding: 24px;
+      }
+
+      .salary-highlight {
+        flex-direction: column;
+      }
+
+      .criteria-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .benefit-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-buttons {
+        flex-direction: column;
+      }
+
+      .info-table th {
+        width: 100px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <div class="header-content">
+      <a href="index.html" class="logo-area" style="text-decoration: none;">
+        <div class="logo"><img src="logo.png" alt="EQAO"></div>
+        <div class="brand-area">
+          <span class="brand-name">EQAO 採用情報ポータル</span>
+          <span class="brand-sub">FOR APPLICANTS</span>
+        </div>
+      </a>
+      <nav class="header-nav">
+        <a href="index.html" class="nav-item">トップ</a>
+        <a href="apply.html" class="nav-item primary">
+          <i data-lucide="send" style="width:16px;height:16px;"></i>
+          面談に申し込む
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <nav class="breadcrumb">
+      <a href="index.html">トップ</a>
+      <span>/</span>
+      <span>給与・勤務条件</span>
+    </nav>
+
+    <div class="page-header">
+      <div class="page-icon">
+        <i data-lucide="wallet" style="width:28px;height:28px;"></i>
+      </div>
+      <h1 class="page-title">給与・勤務条件</h1>
+      <p class="page-subtitle">EQAOの給与体系、昇給制度、業務内容、福利厚生についてご説明します。</p>
+    </div>
+
+    <!-- 給与体系 -->
+    <section class="content-section">
+      <h2 class="section-title">
+        <i data-lucide="banknote" style="width:20px;height:20px;"></i>
+        給与体系
+      </h2>
+      <div class="salary-highlight">
+        <div class="salary-card">
+          <div class="salary-label">研修期間中</div>
+          <div class="salary-amount">1,300<span class="salary-unit">円/時</span></div>
+        </div>
+        <div class="salary-card primary">
+          <div class="salary-label">研修後スタート</div>
+          <div class="salary-amount">1,500<span class="salary-unit">円/時</span></div>
+        </div>
+        <div class="salary-card">
+          <div class="salary-label">最大</div>
+          <div class="salary-amount">2,500<span class="salary-unit">円〜</span></div>
+        </div>
+      </div>
+      <div class="section-content">
+        <p>授業1コマは1時間です。研修期間は授業30コマ分（計30時間）となります。</p>
+        <p>2,500円以降は代表との交渉次第で更なる昇給も可能です。</p>
+      </div>
+    </section>
+
+    <!-- 昇給制度 -->
+    <section class="content-section">
+      <h2 class="section-title">
+        <i data-lucide="trending-up" style="width:20px;height:20px;"></i>
+        昇給制度
+      </h2>
+      <div class="section-content">
+        <p><strong>考課昇給制度</strong>を採用しています。実績や勤務態度などへの評価（考課）を基準とした昇給制度です。</p>
+        <p>塾長・副塾長・生徒による総合評価により時給がUPしていきます。基本的に<strong>自己申告制</strong>となり、希望者は塾長に申し出た後、面談を経て審査されます。</p>
+      </div>
+      <div class="note-box">
+        <div class="note-icon">
+          <i data-lucide="info" style="width:20px;height:20px;"></i>
+        </div>
+        <div class="note-content">
+          授業への遅刻・欠席・無断欠席などはマイナス評価の対象となります。また、経営状況や信頼関係の状況によっては減給となる場合もあります。
+        </div>
+      </div>
+      <div style="margin-top: 24px;">
+        <p style="font-size: 14px; font-weight: 600; color: #2d2248; margin-bottom: 12px;">昇給ステップ</p>
+        <div class="raise-steps">
+          <span class="raise-step start">1,500円</span>
+          <span class="raise-arrow"><i data-lucide="chevron-right" style="width:14px;height:14px;"></i></span>
+          <span class="raise-step">1,550円</span>
+          <span class="raise-arrow"><i data-lucide="chevron-right" style="width:14px;height:14px;"></i></span>
+          <span class="raise-step">1,600円</span>
+          <span class="raise-arrow"><i data-lucide="chevron-right" style="width:14px;height:14px;"></i></span>
+          <span class="raise-step">1,650円</span>
+          <span class="raise-arrow"><i data-lucide="chevron-right" style="width:14px;height:14px;"></i></span>
+          <span class="raise-step">1,700円</span>
+          <span class="raise-arrow"><i data-lucide="chevron-right" style="width:14px;height:14px;"></i></span>
+          <span class="raise-step">...</span>
+          <span class="raise-arrow"><i data-lucide="chevron-right" style="width:14px;height:14px;"></i></span>
+          <span class="raise-step">2,500円〜</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 昇給の判断材料 -->
+    <section class="content-section">
+      <h2 class="section-title">
+        <i data-lucide="clipboard-check" style="width:20px;height:20px;"></i>
+        昇給の判断材料
+      </h2>
+      <div class="criteria-grid">
+        <div class="criteria-item">
+          <span class="criteria-number">1</span>
+          遅刻の少なさ
+        </div>
+        <div class="criteria-item">
+          <span class="criteria-number">2</span>
+          欠勤の少なさ
+        </div>
+        <div class="criteria-item">
+          <span class="criteria-number">3</span>
+          指導の円滑さ
+        </div>
+        <div class="criteria-item">
+          <span class="criteria-number">4</span>
+          生徒からの信頼・評価
+        </div>
+        <div class="criteria-item">
+          <span class="criteria-number">5</span>
+          保護者様からの評価
+        </div>
+        <div class="criteria-item">
+          <span class="criteria-number">6</span>
+          指導実績・合格実績
+        </div>
+        <div class="criteria-item">
+          <span class="criteria-number">7</span>
+          高校時代の合格実績
+        </div>
+        <div class="criteria-item">
+          <span class="criteria-number">8</span>
+          予習・復習
+        </div>
+        <div class="criteria-item">
+          <span class="criteria-number">9</span>
+          スタッフとのコラボレーション
+        </div>
+        <div class="criteria-item">
+          <span class="criteria-number">10</span>
+          会議の出席と態度
+        </div>
+      </div>
+    </section>
+
+    <!-- 業務内容 -->
+    <section class="content-section">
+      <h2 class="section-title">
+        <i data-lucide="briefcase" style="width:20px;height:20px;"></i>
+        業務内容
+      </h2>
+      <div class="task-list">
+        <div class="task-item">
+          <div class="task-icon">
+            <i data-lucide="book-open" style="width:16px;height:16px;"></i>
+          </div>
+          <div class="task-content">
+            <div class="task-title">1コマ1時間の指導</div>
+            <div class="task-desc">生徒への個別指導を行います</div>
+          </div>
+        </div>
+        <div class="task-item">
+          <div class="task-icon">
+            <i data-lucide="message-square" style="width:16px;height:16px;"></i>
+          </div>
+          <div class="task-content">
+            <div class="task-title">授業後のフォローアップメッセージ</div>
+            <div class="task-desc">授業終了後、生徒・保護者へのメッセージを送信します</div>
+          </div>
+        </div>
+        <div class="task-item">
+          <div class="task-icon">
+            <i data-lucide="users" style="width:16px;height:16px;"></i>
+          </div>
+          <div class="task-content">
+            <div class="task-title">月1回の指導員全体ミーティング</div>
+            <div class="task-desc">スタッフ全員での情報共有・研修を行います</div>
+          </div>
+        </div>
+        <div class="task-item">
+          <div class="task-icon">
+            <i data-lucide="clock" style="width:16px;height:16px;"></i>
+          </div>
+          <div class="task-content">
+            <div class="task-title">5分前の授業開始準備・生徒に関する予習</div>
+            <div class="task-desc">授業前に準備と生徒情報の確認を行います</div>
+          </div>
+        </div>
+      </div>
+      <div class="note-box">
+        <div class="note-icon">
+          <i data-lucide="info" style="width:20px;height:20px;"></i>
+        </div>
+        <div class="note-content">
+          出勤できる日・時間帯の調整作業は業務上必須のため、業務時間には含まれません。
+        </div>
+      </div>
+    </section>
+
+    <!-- 勤務条件 -->
+    <section class="content-section">
+      <h2 class="section-title">
+        <i data-lucide="settings" style="width:20px;height:20px;"></i>
+        勤務条件
+      </h2>
+      <table class="info-table">
+        <tr>
+          <th>研修期間</th>
+          <td>授業30コマ分（計30時間）</td>
+        </tr>
+        <tr>
+          <th>最低契約期間</th>
+          <td>6ヶ月 ※場合によっては変動します</td>
+        </tr>
+        <tr>
+          <th>出勤体制</th>
+          <td>オフライン／オンライン／ハイブリッド<br><span style="font-size: 12px; color: #6b6b7b;">※住んでいる場所や交通費の額、総合判断によって決まります</span>
+          </td>
+        </tr>
+        <tr>
+          <th>交通費</th>
+          <td>1出勤につき1,000円まで補償<br><span style="font-size: 12px; color: #6b6b7b;">※採用面接時に検討いたします</span></td>
+        </tr>
+        <tr>
+          <th>繁忙期手当</th>
+          <td>あり（毎年異なるため都度通告）</td>
+        </tr>
+        <tr>
+          <th>成果報酬</th>
+          <td>一部あり</td>
+        </tr>
+      </table>
+    </section>
+
+    <!-- 福利厚生 -->
+    <section class="content-section">
+      <h2 class="section-title">
+        <i data-lucide="gift" style="width:20px;height:20px;"></i>
+        10の福利厚生
+      </h2>
+      <div class="benefit-grid">
+        <div class="benefit-item">
+          <div class="benefit-name">
+            <i data-lucide="train" style="width:16px;height:16px;"></i>
+            交通費補償
+          </div>
+          <div class="benefit-desc">交通費が発生した場合は会社が負担 ※入社時に審査あり</div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-name">
+            <i data-lucide="wifi" style="width:16px;height:16px;"></i>
+            リモートワーク手当
+          </div>
+          <div class="benefit-desc">毎月1,000円支給 ※1日5時間以上のオンライン授業が条件</div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-name">
+            <i data-lucide="home" style="width:16px;height:16px;"></i>
+            フルリモート可
+          </div>
+          <div class="benefit-desc">条件を満たせば完全リモートでの勤務が可能</div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-name">
+            <i data-lucide="lightbulb" style="width:16px;height:16px;"></i>
+            会社改善制度
+          </div>
+          <div class="benefit-desc">労働環境や業務改善のアイデア・意見を提案できる制度</div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-name">
+            <i data-lucide="utensils" style="width:16px;height:16px;"></i>
+            スタッフディナー会
+          </div>
+          <div class="benefit-desc">定期的に開催されるスタッフ同士の交流会</div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-name">
+            <i data-lucide="package" style="width:16px;height:16px;"></i>
+            経費提案制度
+          </div>
+          <div class="benefit-desc">生産性向上のためのアイテム・システム導入を提案可能</div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-name">
+            <i data-lucide="coffee" style="width:16px;height:16px;"></i>
+            スタッフランチ会
+          </div>
+          <div class="benefit-desc">定期的に開催されるランチ交流会</div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-name">
+            <i data-lucide="award" style="width:16px;height:16px;"></i>
+            役職手当
+          </div>
+          <div class="benefit-desc">役職がついた場合、業務に応じて報酬を付与</div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-name">
+            <i data-lucide="plane" style="width:16px;height:16px;"></i>
+            社員旅行
+          </div>
+          <div class="benefit-desc">優秀な成績を収めた数名限定</div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-name">
+            <i data-lucide="credit-card" style="width:16px;height:16px;"></i>
+            スタバカード手当
+          </div>
+          <div class="benefit-desc">献身的に業務を行っている場合に代表より付与</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 勤務地 -->
+    <section class="content-section">
+      <h2 class="section-title">
+        <i data-lucide="map-pin" style="width:20px;height:20px;"></i>
+        勤務地・アクセス
+      </h2>
+      <div class="section-content">
+        <p><strong>塾っぽくない塾 EQAO 浜松町校</strong></p>
+        <p>〒105-0012<br>東京都港区芝大門2-8-9 芝大門KSビル</p>
+      </div>
+      <div class="access-list">
+        <div class="access-item">
+          <i data-lucide="train" style="width:16px;height:16px;"></i>
+          JR山手線・京浜東北線「浜松町駅」徒歩5分
+        </div>
+        <div class="access-item">
+          <i data-lucide="train" style="width:16px;height:16px;"></i>
+          都営三田線「御成門駅」徒歩4分
+        </div>
+        <div class="access-item">
+          <i data-lucide="train" style="width:16px;height:16px;"></i>
+          都営大江戸線・浅草線「大門駅」徒歩3分
+        </div>
+      </div>
+    </section>
+
+    <div class="nav-buttons">
+      <a href="requirements.html" class="nav-btn back">
+        <i data-lucide="arrow-left" style="width:18px;height:18px;"></i>
+        前へ：求める人物像
+      </a>
+      <a href="training.html" class="nav-btn">
+        次へ：研修制度
+        <i data-lucide="arrow-right" style="width:18px;height:18px;"></i>
+      </a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 EQAO Education Group. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>面談申し込み | EQAO 採用情報ポータル</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Noto Sans JP', sans-serif; background: #f5f3f7; min-height: 100vh; color: #1e1e2e; }
+    
+    .header { background: linear-gradient(135deg, #2d2248 0%, #3d3058 100%); padding: 0 24px; height: 64px; display: flex; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(45, 34, 72, 0.2); }
+    .header-content { max-width: 1200px; margin: 0 auto; width: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .logo-area { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+    .logo { width: 38px; height: 38px; background: #fff; border-radius: 10px; display: flex; align-items: center; justify-content: center; padding: 6px; }
+    .logo img { width: 100%; height: 100%; object-fit: contain; }
+    .brand-area { display: flex; flex-direction: column; }
+    .brand-name { font-size: 17px; font-weight: 700; color: #fff; }
+    .brand-sub { font-size: 11px; color: rgba(255, 255, 255, 0.7); letter-spacing: 0.5px; }
+    .header-nav { display: flex; align-items: center; gap: 6px; }
+    .nav-item { display: flex; align-items: center; gap: 6px; padding: 8px 16px; color: rgba(255, 255, 255, 0.8); text-decoration: none; font-size: 14px; border-radius: 8px; transition: all 0.2s; }
+    .nav-item:hover { color: #fff; background: rgba(255, 255, 255, 0.15); }
+
+    .main { max-width: 1100px; margin: 0 auto; padding: 40px 24px; }
+    
+    .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #6b6b7b; margin-bottom: 24px; }
+    .breadcrumb a { color: #6b6b7b; text-decoration: none; transition: color 0.2s; }
+    .breadcrumb a:hover { color: #2d2248; }
+    .breadcrumb span { color: #9b9bab; }
+
+    .page-header { margin-bottom: 40px; text-align: center; }
+    .page-icon { width: 64px; height: 64px; background: #2d2248; border-radius: 16px; display: flex; align-items: center; justify-content: center; color: #fff; margin: 0 auto 16px; }
+    .page-title { font-size: 28px; font-weight: 700; color: #2d2248; margin-bottom: 8px; }
+    .page-subtitle { font-size: 15px; color: #6b6b7b; line-height: 1.7; }
+
+    /* 2カラムレイアウト */
+    .two-column { display: grid; grid-template-columns: 1fr 420px; gap: 32px; align-items: start; }
+    .info-column { display: flex; flex-direction: column; gap: 24px; }
+    .form-column { position: sticky; top: 88px; }
+
+    /* セクションカード */
+    .content-section { background: #fff; border: 1px solid #e8e4ed; border-radius: 12px; padding: 28px; }
+    .section-title { font-size: 16px; font-weight: 700; color: #2d2248; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid #f3f0f7; display: flex; align-items: center; gap: 10px; }
+    .section-title i { color: #6b5b95; }
+
+    /* 審査の流れ */
+    .flow-horizontal { display: flex; gap: 12px; }
+    .flow-step { flex: 1; background: #faf9fc; border-radius: 10px; padding: 20px 16px; text-align: center; position: relative; }
+    .flow-step::after { content: ''; position: absolute; right: -9px; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-left: 6px solid #d8d4de; border-top: 6px solid transparent; border-bottom: 6px solid transparent; z-index: 1; }
+    .flow-step:last-child::after { display: none; }
+    .flow-number { width: 32px; height: 32px; background: #2d2248; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; margin: 0 auto 10px; }
+    .flow-title { font-size: 13px; font-weight: 700; color: #2d2248; margin-bottom: 4px; }
+    .flow-time { font-size: 11px; color: #6b5b95; background: #f3eef8; padding: 2px 8px; border-radius: 4px; display: inline-block; }
+    .flow-total { text-align: center; margin-top: 16px; font-size: 14px; color: #3d3d4d; }
+    .flow-total strong { color: #2d2248; }
+
+    /* 面接内容グリッド */
+    .interview-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .interview-item { display: flex; align-items: center; gap: 8px; padding: 10px 12px; background: #faf9fc; border-radius: 6px; font-size: 13px; color: #3d3d4d; }
+    .interview-item i { color: #6b5b95; flex-shrink: 0; }
+    .interview-note { margin-top: 16px; font-size: 12px; color: #6b6b7b; line-height: 1.6; }
+
+    /* 注意事項 */
+    .notice-list { display: flex; flex-direction: column; gap: 10px; }
+    .notice-item { display: flex; align-items: flex-start; gap: 10px; padding: 14px 16px; background: #fef3c7; border-radius: 8px; border-left: 3px solid #f59e0b; }
+    .notice-item i { color: #d97706; flex-shrink: 0; margin-top: 2px; }
+    .notice-item p { font-size: 13px; color: #78350f; line-height: 1.6; }
+
+    /* 審査結果 */
+    .result-box { background: #f0fdf4; border-radius: 10px; padding: 20px; border-left: 3px solid #22c55e; }
+    .result-box p { font-size: 14px; color: #166534; line-height: 1.7; }
+    .result-box strong { color: #15803d; }
+
+    /* フォームカード */
+    .form-card { background: #fff; border: 1px solid #e8e4ed; border-radius: 12px; padding: 28px; }
+    .form-card-title { font-size: 18px; font-weight: 700; color: #2d2248; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+    .form-card-subtitle { font-size: 13px; color: #6b6b7b; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid #f3f0f7; }
+
+    .form-group { margin-bottom: 18px; }
+    .form-label { display: block; font-size: 13px; font-weight: 600; color: #2d2248; margin-bottom: 6px; }
+    .form-label .required { color: #e11d48; font-size: 11px; margin-left: 4px; }
+    .form-input, .form-select, .form-textarea { width: 100%; padding: 10px 12px; border: 1px solid #e8e4ed; border-radius: 8px; font-size: 14px; font-family: inherit; color: #1e1e2e; transition: all 0.2s; }
+    .form-input:focus, .form-select:focus, .form-textarea:focus { outline: none; border-color: #2d2248; box-shadow: 0 0 0 3px rgba(45, 34, 72, 0.1); }
+    .form-input::placeholder, .form-textarea::placeholder { color: #9b9bab; }
+    .form-textarea { min-height: 100px; resize: vertical; }
+    .form-hint { font-size: 11px; color: #6b6b7b; margin-top: 4px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    /* ラジオボタン */
+    .form-options { display: flex; gap: 8px; }
+    .form-option { flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 10px; background: #faf9fc; border-radius: 8px; cursor: pointer; transition: all 0.2s; border: 2px solid transparent; }
+    .form-option:hover { background: #f3f0f7; }
+    .form-option:has(input:checked) { background: #f3eef8; border-color: #2d2248; }
+    .form-option input[type="radio"] { display: none; }
+    .form-option-label { font-size: 13px; color: #3d3d4d; font-weight: 500; }
+
+    /* 送信ボタン */
+    .submit-btn { width: 100%; padding: 14px 24px; background: #2d2248; color: #fff; border: none; border-radius: 10px; font-size: 15px; font-weight: 700; font-family: inherit; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.2s; margin-top: 24px; }
+    .submit-btn:hover { background: #3d3058; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(45, 34, 72, 0.25); }
+    .submit-btn:disabled { background: #9b9bab; cursor: not-allowed; transform: none; box-shadow: none; }
+
+    /* 確認チェックボックス */
+    .confirm-check { display: flex; align-items: flex-start; gap: 10px; padding: 16px; background: #f3eef8; border-radius: 8px; margin-top: 20px; }
+    .confirm-check input[type="checkbox"] { width: 18px; height: 18px; accent-color: #2d2248; margin-top: 2px; flex-shrink: 0; }
+    .confirm-check label { font-size: 13px; color: #3d3d4d; line-height: 1.5; cursor: pointer; }
+
+    /* 完了画面 */
+    .complete-card { background: #fff; border: 1px solid #e8e4ed; border-radius: 12px; padding: 48px 32px; text-align: center; display: none; }
+    .complete-icon { width: 80px; height: 80px; background: #d1fae5; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #059669; margin: 0 auto 24px; }
+    .complete-title { font-size: 22px; font-weight: 700; color: #2d2248; margin-bottom: 12px; }
+    .complete-message { font-size: 15px; color: #6b6b7b; line-height: 1.8; margin-bottom: 32px; }
+    .complete-btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; background: #2d2248; color: #fff; border-radius: 10px; font-size: 15px; font-weight: 600; text-decoration: none; transition: all 0.2s; }
+    .complete-btn:hover { background: #3d3058; }
+
+    .footer { text-align: center; padding: 32px 24px; color: #9b9bab; font-size: 13px; }
+
+    /* レスポンシブ */
+    @media (max-width: 900px) {
+      .two-column { grid-template-columns: 1fr; }
+      .form-column { position: static; }
+      .flow-horizontal { flex-wrap: wrap; }
+      .flow-step { flex: 0 0 calc(50% - 6px); }
+      .flow-step:nth-child(2)::after { display: none; }
+      .interview-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .header-nav { display: none; }
+      .page-title { font-size: 22px; }
+      .flow-step { flex: 0 0 100%; }
+      .flow-step::after { display: none; }
+      .form-row { grid-template-columns: 1fr; }
+      .form-options { flex-direction: column; }
+    }
+
+    .spin { animation: spin 1s linear infinite; }
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <div class="header-content">
+      <a href="index.html" class="logo-area">
+        <div class="logo"><img src="logo.png" alt="EQAO"></div>
+        <div class="brand-area">
+          <span class="brand-name">EQAO 採用情報ポータル</span>
+          <span class="brand-sub">FOR APPLICANTS</span>
+        </div>
+      </a>
+      <nav class="header-nav">
+        <a href="index.html" class="nav-item">トップ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <nav class="breadcrumb">
+      <a href="index.html">トップ</a>
+      <span>/</span>
+      <span>面談申し込み</span>
+    </nav>
+
+    <div class="page-header">
+      <div class="page-icon">
+        <i data-lucide="send" style="width:32px;height:32px;"></i>
+      </div>
+      <h1 class="page-title">面談申し込み</h1>
+      <p class="page-subtitle">採用面談へのお申し込みはこちらから。<br>担当者より日程調整のご連絡をいたします。</p>
+    </div>
+
+    <div class="two-column" id="mainContent">
+      <!-- 左カラム：情報 -->
+      <div class="info-column">
+        <!-- 審査の流れ -->
+        <section class="content-section">
+          <h2 class="section-title">
+            <i data-lucide="route" style="width:18px;height:18px;"></i>
+            審査の流れ
+          </h2>
+          <div class="flow-horizontal">
+            <div class="flow-step">
+              <div class="flow-number">1</div>
+              <div class="flow-title">面接審査</div>
+              <span class="flow-time">15分</span>
+            </div>
+            <div class="flow-step">
+              <div class="flow-number">2</div>
+              <div class="flow-title">口頭試問</div>
+              <span class="flow-time">15分</span>
+            </div>
+            <div class="flow-step">
+              <div class="flow-number">3</div>
+              <div class="flow-title">業務・給与説明</div>
+              <span class="flow-time">10分</span>
+            </div>
+            <div class="flow-step">
+              <div class="flow-number">4</div>
+              <div class="flow-title">質疑応答</div>
+              <span class="flow-time">10分</span>
+            </div>
+          </div>
+          <p class="flow-total">所要時間：<strong>約50分</strong>（最大60分）</p>
+        </section>
+
+        <!-- 面接で聞かれること -->
+        <section class="content-section">
+          <h2 class="section-title">
+            <i data-lucide="message-circle" style="width:18px;height:18px;"></i>
+            面接で聞かれること
+          </h2>
+          <div class="interview-grid">
+            <div class="interview-item">
+              <i data-lucide="user" style="width:14px;height:14px;"></i>
+              通っている大学・学部
+            </div>
+            <div class="interview-item">
+              <i data-lucide="graduation-cap" style="width:14px;height:14px;"></i>
+              大学への進学理由
+            </div>
+            <div class="interview-item">
+              <i data-lucide="file-text" style="width:14px;height:14px;"></i>
+              入試方式・合格実績
+            </div>
+            <div class="interview-item">
+              <i data-lucide="lightbulb" style="width:14px;height:14px;"></i>
+              推薦入試に対する考え
+            </div>
+            <div class="interview-item">
+              <i data-lucide="trophy" style="width:14px;height:14px;"></i>
+              高校時代に取り組んだこと
+            </div>
+            <div class="interview-item">
+              <i data-lucide="languages" style="width:14px;height:14px;"></i>
+              保有している英語資格
+            </div>
+            <div class="interview-item">
+              <i data-lucide="star" style="width:14px;height:14px;"></i>
+              強み・弱み
+            </div>
+            <div class="interview-item">
+              <i data-lucide="heart" style="width:14px;height:14px;"></i>
+              弊社を希望する理由
+            </div>
+          </div>
+          <p class="interview-note">※上記以外の質問をする場合もあります。<br>※面接担当者との相性も審査の一部となります。</p>
+        </section>
+
+        <!-- 審査結果 -->
+        <section class="content-section">
+          <h2 class="section-title">
+            <i data-lucide="mail" style="width:18px;height:18px;"></i>
+            審査結果について
+          </h2>
+          <div class="result-box">
+            <p>社内審査完了後、<strong>2〜3営業日以内</strong>にLINEにて審査結果をお伝えします。<br>審査結果後に応募を取り消すことも可能です。</p>
+          </div>
+        </section>
+
+        <!-- 注意事項 -->
+        <section class="content-section">
+          <h2 class="section-title">
+            <i data-lucide="alert-triangle" style="width:18px;height:18px;"></i>
+            注意事項
+          </h2>
+          <div class="notice-list">
+            <div class="notice-item">
+              <i data-lucide="mic" style="width:16px;height:16px;"></i>
+              <p>面接・口頭試問は<strong>録音</strong>させていただきます。</p>
+            </div>
+            <div class="notice-item">
+              <i data-lucide="file-x" style="width:16px;height:16px;"></i>
+              <p>提出された書類は<strong>返却不可</strong>となります。</p>
+            </div>
+            <div class="notice-item">
+              <i data-lucide="scroll-text" style="width:16px;height:16px;"></i>
+              <p>寄付された志望理由書等の<strong>著作権は弊社に移転</strong>します。塾生がアクセス可能となりますが、一般公開はされません。</p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- 右カラム：フォーム -->
+      <div class="form-column">
+        <form class="form-card" id="applyForm">
+          <h2 class="form-card-title">
+            <i data-lucide="edit" style="width:20px;height:20px;color:#6b5b95;"></i>
+            申し込みフォーム
+          </h2>
+          <p class="form-card-subtitle">必要事項をご入力ください</p>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">お名前<span class="required">必須</span></label>
+              <input type="text" class="form-input" name="name" placeholder="山田 太郎" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">フリガナ<span class="required">必須</span></label>
+              <input type="text" class="form-input" name="furigana" placeholder="ヤマダ タロウ" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">メールアドレス<span class="required">必須</span></label>
+            <input type="email" class="form-input" name="email" placeholder="example@email.com" required>
+            <p class="form-hint">日程調整のご連絡をお送りします</p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">電話番号<span class="required">必須</span></label>
+            <input type="tel" class="form-input" name="phone" placeholder="090-1234-5678" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">学校名<span class="required">必須</span></label>
+              <input type="text" class="form-input" name="school" placeholder="○○大学" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">学部・学科</label>
+              <input type="text" class="form-input" name="department" placeholder="○○学部">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">学年<span class="required">必須</span></label>
+            <select class="form-select" name="grade" required>
+              <option value="">選択してください</option>
+              <option value="1年">1年</option>
+              <option value="2年">2年</option>
+              <option value="3年">3年</option>
+              <option value="4年">4年</option>
+              <option value="大学院">大学院</option>
+              <option value="その他">その他</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">希望する面談方法<span class="required">必須</span></label>
+            <div class="form-options">
+              <label class="form-option">
+                <input type="radio" name="method" value="online" required>
+                <span class="form-option-label">オンライン</span>
+              </label>
+              <label class="form-option">
+                <input type="radio" name="method" value="offline">
+                <span class="form-option-label">対面</span>
+              </label>
+              <label class="form-option">
+                <input type="radio" name="method" value="either">
+                <span class="form-option-label">どちらでも可</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">ご質問・ご要望</label>
+            <textarea class="form-textarea" name="message" placeholder="ご質問や伝えておきたいことがあればご記入ください"></textarea>
+          </div>
+
+          <div class="confirm-check">
+            <input type="checkbox" id="confirmCheck" required>
+            <label for="confirmCheck">採用情報ポータルの各ページを確認し、注意事項に同意します</label>
+          </div>
+
+          <button type="submit" class="submit-btn" id="submitBtn">
+            <i data-lucide="send" style="width:18px;height:18px;"></i>
+            面談を申し込む
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- 完了画面 -->
+    <div class="complete-card" id="completeCard">
+      <div class="complete-icon">
+        <i data-lucide="check" style="width:40px;height:40px;"></i>
+      </div>
+      <h2 class="complete-title">申し込みが完了しました</h2>
+      <p class="complete-message">
+        お申し込みありがとうございます。<br>
+        担当者より3営業日以内に<br>
+        日程調整のご連絡をいたします。
+      </p>
+      <a href="index.html" class="complete-btn">
+        <i data-lucide="home" style="width:18px;height:18px;"></i>
+        トップに戻る
+      </a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 EQAO Education Group. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+
+      const form = document.getElementById('applyForm');
+      const mainContent = document.getElementById('mainContent');
+      const completeCard = document.getElementById('completeCard');
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const submitBtn = document.getElementById('submitBtn');
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i data-lucide="loader-2" style="width:18px;height:18px;" class="spin"></i> 送信中...';
+        lucide.createIcons();
+
+        // 実際の送信処理はここに実装
+        // 例: Google Apps Script のウェブフックに送信
+        
+        // デモ用：1.5秒後に完了画面を表示
+        setTimeout(() => {
+          mainContent.style.display = 'none';
+          completeCard.style.display = 'block';
+          lucide.createIcons();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 1500);
+      });
+    });
+  </script>
+</body>
+
+</html>
